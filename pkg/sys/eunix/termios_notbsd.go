@@ -1,4 +1,4 @@
-//go:build linux || solaris
+//go:build linux || solaris || sylixos
 
 // Copyright 2015 go-termios Author. All Rights Reserved.
 // https://github.com/go-termios/termios
@@ -13,5 +13,5 @@ const (
 	setAttrNowIOCTL   = unix.TCSETS
 	setAttrDrainIOCTL = unix.TCSETSW
 	setAttrFlushIOCTL = unix.TCSETSF
-	flushIOCTL        = unix.TCFLSH
+	// flushIOCTL        = unix.TCFLSH
 )

@@ -1,4 +1,4 @@
-//go:build !windows && !plan9 && !sylixos
+//go:build sylixos
 
 package eval
 
@@ -12,7 +12,6 @@ import (
 	"src.elv.sh/pkg/env"
 	"src.elv.sh/pkg/eval/errs"
 	"src.elv.sh/pkg/eval/vals"
-	"src.elv.sh/pkg/sys/eunix"
 )
 
 // ErrNotInSameProcessGroup is thrown when the process IDs passed to fg are not
@@ -56,6 +55,8 @@ func decSHLVL() {
 }
 
 func fg(pids ...int) error {
+	var err error
+
 	if len(pids) == 0 {
 		return errs.ArityMismatch{What: "arguments", ValidLow: 1, ValidHigh: -1, Actual: len(pids)}
 	}
@@ -72,10 +73,10 @@ func fg(pids ...int) error {
 		}
 	}
 
-	err := eunix.Tcsetpgrp(0, thepgid)
-	if err != nil {
-		return err
-	}
+	// err := eunix.Tcsetpgrp(0, thepgid)
+	// if err != nil {
+	// 	return err
+	// }
 
 	errors := make([]Exception, len(pids))
 

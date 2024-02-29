@@ -11,7 +11,11 @@ require (
 
 require (
 	github.com/mattn/go-isatty v0.0.17 // indirect
-	golang.org/x/sys v0.5.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
 )
+
+replace golang.org/x/sys v0.6.0 => ../../golang.org/x/sys
+
+replace github.com/mattn/go-isatty v0.0.17 => ../../github.com/mattn/go-isatty
 
 replace src.elv.sh => ../
