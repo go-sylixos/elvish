@@ -34,6 +34,7 @@ func TestFileReader_ReadByteWithTimeout(t *testing.T) {
 	}
 }
 
+// Sylixos stuck !!!
 func TestFileReader_ReadByteWithTimeout_EOF(t *testing.T) {
 	r, w, cleanup := setupFileReader()
 	defer cleanup()
@@ -45,6 +46,7 @@ func TestFileReader_ReadByteWithTimeout_EOF(t *testing.T) {
 	}
 }
 
+// Sylixos stuck !!!
 func TestFileReader_ReadByteWithTimeout_Timeout(t *testing.T) {
 	r, _, cleanup := setupFileReader()
 	defer cleanup()
@@ -55,6 +57,7 @@ func TestFileReader_ReadByteWithTimeout_Timeout(t *testing.T) {
 	}
 }
 
+// Sylixos stuck !!!
 func TestFileReader_Stop(t *testing.T) {
 	r, _, cleanup := setupFileReader()
 	defer cleanup()
