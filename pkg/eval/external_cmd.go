@@ -4,6 +4,7 @@ import (
 	"errors"
 	"os"
 	"os/exec"
+	"runtime"
 	"sync/atomic"
 	"syscall"
 
@@ -111,5 +112,11 @@ func (e externalCmd) Call(fm *Frame, argVals []any, opts map[string]any) error {
 			return errs.ReaderGone{}
 		}
 	}
-	return NewExternalCmdExit(e.Name, state.Sys().(syscall.WaitStatus), proc.Pid)
+	err = NewExternalCmdExit(e.Name, state.Sys().(syscall.WaitStatus), proc.Pid)
+
+	if runtime.GOOS == "sylixos" && err == nil {
+		return nil
+	}
+
+	return err
 }
