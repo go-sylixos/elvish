@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
 	"time"
 
 	"src.elv.sh/pkg/daemon/daemondefs"
@@ -118,6 +119,11 @@ func detectDaemon(sockpath string, cl daemondefs.Client) (daemonStatus, error) {
 		if errors.Is(err, errConnRefused) {
 			return connectionRefused, err
 		}
+		// SylixOS just reset conn
+		if errors.Is(err, errConnReset) && runtime.GOOS == "sylixos" {
+			return connectionRefused, err
+		}
+		fmt.Println(version, err)
 		return connectionOtherError, err
 	}
 	if version < api.Version {

@@ -11,6 +11,8 @@ import (
 
 var errConnRefused = syscall.ECONNREFUSED
 
+var errConnReset = syscall.ECONNRESET
+
 // Make sure that files created by the daemon is not accessible to other users.
 func setUmaskForDaemon() { unix.Umask(0077) }
 
